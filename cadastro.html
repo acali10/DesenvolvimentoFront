@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de voluntários — Instituto Raízes</title>
+  <meta name="description" content="Cadastre-se como voluntário ou colaborador do Instituto Raízes e escolha em qual iniciativa quer contribuir.">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span class="brand__word">Instituto <span>Raízes</span></span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menu</span>
+        ☰
+      </button>
+      <ul class="nav__links" id="menu-principal">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html" aria-current="page">Cadastro</a></li>
+        <li class="nav__cta"><a class="btn btn-primary" href="cadastro.html">Quero ajudar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="section">
+      <div class="container">
+        <div class="form-shell">
+
+          <aside class="form-aside">
+            <span class="eyebrow" style="color: var(--color-earth); display:block; margin-bottom: 0.6em; font-weight:600;">Cadastro de voluntários</span>
+            <h1>Vamos começar essa parceria.</h1>
+            <p>Preencha os dados abaixo com atenção. Usamos essas informações apenas para organizar as equipes de cada projeto e manter contato sobre próximas atividades.</p>
+            <ul>
+              <li>Leva cerca de 5 minutos para concluir.</li>
+              <li>Seus dados não são compartilhados com terceiros.</li>
+              <li>Você pode escolher mais de uma área de interesse.</li>
+              <li>Nossa equipe entra em contato em até 5 dias úteis.</li>
+            </ul>
+          </aside>
+
+          <div class="panel">
+            <form id="form-cadastro" novalidate>
+
+              <fieldset>
+                <legend>Dados pessoais</legend>
+
+                <div class="field">
+                  <label for="nome">Nome completo *</label>
+                  <input
+                    type="text" id="nome" name="nome"
+                    required minlength="4" maxlength="120"
+                    pattern="[A-Za-zÀ-ÖØ-öø-ÿ'\s]+"
+                    autocomplete="name"
+                    placeholder="Ex.: Maria da Silva Santos">
+                  <span class="error-msg">Informe seu nome completo, apenas com letras.</span>
+                </div>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="email">E-mail *</label>
+                    <input
+                      type="email" id="email" name="email"
+                      required autocomplete="email"
+                      placeholder="voce@exemplo.com">
+                    <span class="error-msg">Informe um e-mail válido.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="nascimento">Data de nascimento *</label>
+                    <input type="date" id="nascimento" name="nascimento" required autocomplete="bday">
+                    <span class="error-msg">Informe sua data de nascimento.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="telefone">Telefone / WhatsApp *</label>
+                    <input
+                      type="tel" id="telefone" name="telefone"
+                      required inputmode="numeric"
+                      pattern="\(\d{2}\)\s\d{4,5}-\d{4}"
+                      placeholder="(54) 99999-0000"
+                      autocomplete="tel"
+                      maxlength="15">
+                    <span class="error-msg">Informe um telefone válido com DDD.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="cpf">CPF *</label>
+                    <input
+                      type="text" id="cpf" name="cpf"
+                      required inputmode="numeric"
+                      pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                      placeholder="000.000.000-00"
+                      maxlength="14">
+                    <span class="error-msg">Informe um CPF válido no formato 000.000.000-00.</span>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Endereço</legend>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="cep">CEP *</label>
+                    <input
+                      type="text" id="cep" name="cep"
+                      required inputmode="numeric"
+                      pattern="\d{5}-\d{3}"
+                      placeholder="00000-000"
+                      autocomplete="postal-code"
+                      maxlength="9">
+                    <span class="hint" id="cep-hint"></span>
+                    <span class="error-msg">Informe um CEP válido no formato 00000-000.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="numero">Número *</label>
+                    <input type="text" id="numero" name="numero" required maxlength="10" placeholder="Ex.: 245">
+                    <span class="error-msg">Informe o número do endereço.</span>
+                  </div>
+
+                  <div class="field field--full">
+                    <label for="rua">Rua *</label>
+                    <input type="text" id="rua" name="rua" required autocomplete="address-line1" placeholder="Preenchido automaticamente pelo CEP">
+                    <span class="error-msg">Informe o nome da rua.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="bairro">Bairro *</label>
+                    <input type="text" id="bairro" name="bairro" required autocomplete="address-level3">
+                    <span class="error-msg">Informe o bairro.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="cidade">Cidade *</label>
+                    <input type="text" id="cidade" name="cidade" required autocomplete="address-level2">
+                    <span class="error-msg">Informe a cidade.</span>
+                  </div>
+
+                  <div class="field">
+                    <label for="estado">Estado (UF) *</label>
+                    <input type="text" id="estado" name="estado" required maxlength="2" pattern="[A-Za-z]{2}" autocomplete="address-level1" placeholder="RS" style="text-transform:uppercase;">
+                    <span class="error-msg">Informe a UF com 2 letras.</span>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Perfil de voluntariado</legend>
+
+                <div class="field field--full">
+                  <label id="areas-label">Áreas de interesse * (selecione ao menos uma)</label>
+                  <div class="check-grid" role="group" aria-labelledby="areas-label">
+                    <label class="check-item"><input type="checkbox" name="areas" value="Horta Comunitária Semente Boa"> Horta Comunitária</label>
+                    <label class="check-item"><input type="checkbox" name="areas" value="Raiz do Saber"> Reforço escolar (Raiz do Saber)</label>
+                    <label class="check-item"><input type="checkbox" name="areas" value="Cesta Solidária"> Cesta Solidária</label>
+                    <label class="check-item"><input type="checkbox" name="areas" value="Mãos que Criam"> Oficinas Mãos que Criam</label>
+                  </div>
+                  <span class="error-msg" id="areas-error" style="display:block;"></span>
+                </div>
+
+                <div class="field field--full">
+                  <label>Disponibilidade *</label>
+                  <div class="check-grid" role="radiogroup" aria-label="Disponibilidade">
+                    <label class="check-item"><input type="radio" name="disponibilidade" value="Semanal" required> Semanal</label>
+                    <label class="check-item"><input type="radio" name="disponibilidade" value="Quinzenal"> Quinzenal</label>
+                    <label class="check-item"><input type="radio" name="disponibilidade" value="Mensal"> Mensal</label>
+                    <label class="check-item"><input type="radio" name="disponibilidade" value="Eventual"> Eventual / em datas pontuais</label>
+                  </div>
+                </div>
+
+                <div class="field field--full">
+                  <label for="mensagem">Conte um pouco sobre você (opcional)</label>
+                  <textarea id="mensagem" name="mensagem" maxlength="500" placeholder="Experiências, habilidades ou disponibilidade de horário que queira compartilhar."></textarea>
+                </div>
+              </fieldset>
+
+              <div class="terms">
+                <input type="checkbox" id="termos" name="termos" required>
+                <label for="termos">Autorizo o Instituto Raízes a armazenar meus dados para fins de organização do voluntariado, conforme a Lei Geral de Proteção de Dados (LGPD). *</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Enviar cadastro</button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+
+              <div class="success-panel" id="sucesso-cadastro" role="status">
+                <h3>Cadastro recebido, <span data-nome>voluntário(a)</span>!</h3>
+                <p>Obrigado por dar um passo à frente. Nossa equipe vai entrar em contato em até 5 dias úteis pelo telefone ou e-mail informado.</p>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html" style="margin-bottom: 0.8em;">
+            <img src="assets/img/logo.svg" alt="" width="36" height="36">
+            <span class="brand__word">Instituto Raízes</span>
+          </a>
+          <p>Rua das Acácias, 245 — Bairro Esperança<br>Caxias do Sul, RS</p>
+        </div>
+        <div>
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <ul>
+            <li>contato@institutoraizes.org.br</li>
+            <li>(54) 3222-1010</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Instituto Raízes. Todos os direitos reservados.</span>
+        <span>CNPJ 00.000.000/0001-00</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
