@@ -28,6 +28,21 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* Submenu dropdown "Projetos": sincroniza aria-expanded com hover/foco */
+  /* ------------------------------------------------------------------ */
+  const dropdown = document.querySelector('.nav__dropdown');
+  if (dropdown) {
+    const trigger = dropdown.querySelector('a');
+    const setExpanded = (value) => trigger.setAttribute('aria-expanded', String(value));
+    dropdown.addEventListener('mouseenter', () => setExpanded(true));
+    dropdown.addEventListener('mouseleave', () => setExpanded(false));
+    dropdown.addEventListener('focusin', () => setExpanded(true));
+    dropdown.addEventListener('focusout', (event) => {
+      if (!dropdown.contains(event.relatedTarget)) setExpanded(false);
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
   /* Máscaras de entrada                                                  */
   /* ------------------------------------------------------------------ */
   const onlyDigits = (value) => value.replace(/\D/g, '');
@@ -189,9 +204,12 @@
 
   const statusEl = form.querySelector('.form-status');
   const successPanel = document.getElementById('sucesso-cadastro');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+    if (submitBtn.disabled) return; // evita clique duplo enquanto processa
+    submitBtn.disabled = true;
     let valid = form.checkValidity();
 
     // Revalida CPF explicitamente (checkValidity só cobre o padrão de formato)
@@ -210,6 +228,7 @@
     }
 
     if (!valid) {
+      submitBtn.disabled = false; // reabilita para o usuário corrigir e reenviar
       form.reportValidity();
       if (statusEl) {
         statusEl.dataset.state = 'error';
@@ -221,6 +240,7 @@
     }
 
     // Sem backend nesta entrega: simula o envio e exibe confirmação.
+    submitBtn.textContent = 'Enviado ✓';
     if (statusEl) {
       statusEl.dataset.state = 'ok';
       statusEl.textContent = '';
@@ -236,5 +256,9 @@
     }
     form.reset();
     form.querySelectorAll('.has-error').forEach((el) => el.classList.remove('has-error'));
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar cadastro';
+    }, 2000);
   });
 })();

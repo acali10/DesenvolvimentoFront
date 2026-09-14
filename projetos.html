@@ -23,7 +23,15 @@
       </button>
       <ul class="nav__links" id="menu-principal">
         <li><a href="index.html">Início</a></li>
-        <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+        <li class="nav__dropdown">
+          <a href="projetos.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Projetos</a>
+          <ul class="nav__submenu">
+            <li><a href="projetos.html#horta">Horta Comunitária</a></li>
+            <li><a href="projetos.html#raiz-do-saber">Raiz do Saber</a></li>
+            <li><a href="projetos.html#cesta-solidaria">Cesta Solidária</a></li>
+            <li><a href="projetos.html#maos-que-criam">Mãos que Criam</a></li>
+          </ul>
+        </li>
         <li><a href="cadastro.html">Cadastro</a></li>
         <li class="nav__cta"><a class="btn btn-primary" href="cadastro.html">Quero ajudar</a></li>
       </ul>
@@ -39,10 +47,10 @@
       </div>
     </section>
 
-    <section class="section">
+    <div class="section">
       <div class="container">
 
-        <article class="project-row">
+        <article class="project-row" id="horta">
           <div class="project-row__figure">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="70" cy="70" r="70" fill="#1F4D3D"/>
@@ -59,7 +67,7 @@
           </div>
         </article>
 
-        <article class="project-row">
+        <article class="project-row" id="raiz-do-saber">
           <div class="project-row__figure">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="70" cy="70" r="70" fill="#8C5A3C"/>
@@ -78,7 +86,7 @@
           </div>
         </article>
 
-        <article class="project-row">
+        <article class="project-row" id="cesta-solidaria">
           <div class="project-row__figure">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="70" cy="70" r="70" fill="#E0A72E"/>
@@ -94,7 +102,7 @@
           </div>
         </article>
 
-        <article class="project-row">
+        <article class="project-row" id="maos-que-criam">
           <div class="project-row__figure">
             <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="70" cy="70" r="70" fill="#1F4D3D"/>
@@ -112,7 +120,7 @@
         </article>
 
       </div>
-    </section>
+    </div>
 
     <section class="cta-band">
       <div class="container">
@@ -136,7 +144,7 @@
           <p>Rua das Acácias, 245 — Bairro Esperança<br>Caxias do Sul, RS</p>
         </div>
         <div>
-          <h4>Navegação</h4>
+          <h3>Navegação</h3>
           <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="projetos.html">Projetos</a></li>
@@ -144,7 +152,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contato</h4>
+          <h3>Contato</h3>
           <ul>
             <li>contato@institutoraizes.org.br</li>
             <li>(54) 3222-1010</li>

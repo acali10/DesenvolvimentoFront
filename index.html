@@ -23,7 +23,15 @@
       </button>
       <ul class="nav__links" id="menu-principal">
         <li><a href="index.html" aria-current="page">Início</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
+        <li class="nav__dropdown">
+          <a href="projetos.html" aria-haspopup="true" aria-expanded="false">Projetos</a>
+          <ul class="nav__submenu">
+            <li><a href="projetos.html#horta">Horta Comunitária</a></li>
+            <li><a href="projetos.html#raiz-do-saber">Raiz do Saber</a></li>
+            <li><a href="projetos.html#cesta-solidaria">Cesta Solidária</a></li>
+            <li><a href="projetos.html#maos-que-criam">Mãos que Criam</a></li>
+          </ul>
+        </li>
         <li><a href="cadastro.html">Cadastro</a></li>
         <li class="nav__cta"><a class="btn btn-primary" href="cadastro.html">Quero ajudar</a></li>
       </ul>
@@ -77,6 +85,7 @@
 
     <section class="section section--alt">
       <div class="container">
+        <h2 class="visually-hidden">Instituto Raízes em números</h2>
         <div class="stats">
           <div>
             <span class="stat__num">180</span>
@@ -131,7 +140,7 @@
           <p>Rua das Acácias, 245 — Bairro Esperança<br>Caxias do Sul, RS</p>
         </div>
         <div>
-          <h4>Navegação</h4>
+          <h3>Navegação</h3>
           <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="projetos.html">Projetos</a></li>
@@ -139,7 +148,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contato</h4>
+          <h3>Contato</h3>
           <ul>
             <li>contato@institutoraizes.org.br</li>
             <li>(54) 3222-1010</li>
