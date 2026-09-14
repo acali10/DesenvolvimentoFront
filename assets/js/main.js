@@ -110,6 +110,142 @@
     return cpf === cpf.slice(0, 9) + String(digit1) + String(digit2);
   }
 
+  /* ==================================================================== */
+  /* ADICIONADO — Componentes de feedback (toasts + modal)                */
+  /* Roda em todas as páginas, por isso fica antes do bloco do formulário.*/
+  /* ==================================================================== */
+  const ICONS = { success: '✓', warning: '!', danger: '✕', info: 'i' };
+
+  const toastRegion = (() => {
+    let region = document.querySelector('.toast-region');
+    if (!region) {
+      region = document.createElement('div');
+      region.className = 'toast-region';
+      region.setAttribute('role', 'status');
+      region.setAttribute('aria-live', 'polite');
+      region.setAttribute('aria-atomic', 'false');
+      document.body.appendChild(region);
+    }
+    return region;
+  })();
+
+  function showToast({ variant = 'info', title = '', text = '', duration = 5000 } = {}) {
+    const toast = document.createElement('div');
+    toast.className = `toast toast--${variant}`;
+    toast.setAttribute('role', variant === 'danger' ? 'alert' : 'status');
+
+    toast.innerHTML = `
+      <span class="toast__icon" aria-hidden="true">${ICONS[variant] || ICONS.info}</span>
+      <div class="toast__body">
+        ${title ? `<strong class="toast__title">${title}</strong>` : ''}
+        ${text ? `<p class="toast__text">${text}</p>` : ''}
+      </div>
+      <button type="button" class="toast__close" aria-label="Fechar notificação">×</button>
+    `;
+
+    const close = () => {
+      toast.classList.remove('is-visible');
+      toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+    };
+    toast.querySelector('.toast__close').addEventListener('click', close);
+    toastRegion.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('is-visible'));
+    if (duration > 0) setTimeout(close, duration);
+    return toast;
+  }
+
+  const modal = document.getElementById('modal-feedback');
+  let lastFocused = null;
+
+  function openModal({ variant = 'info', title, desc, confirmText = 'Confirmar', cancelText = 'Cancelar', onConfirm } = {}) {
+    if (!modal) return;
+    lastFocused = document.activeElement;
+
+    modal.className = `modal modal--${variant} is-open`;
+    modal.querySelector('.modal__icon').textContent = ICONS[variant] || ICONS.info;
+    modal.querySelector('.modal__title').textContent = title || '';
+    modal.querySelector('.modal__desc').textContent = desc || '';
+
+    const confirmBtn = modal.querySelector('[data-modal-confirm]');
+    const cancelBtn  = modal.querySelector('[data-modal-cancel]');
+    confirmBtn.textContent = confirmText;
+    cancelBtn.textContent  = cancelText;
+
+    const newConfirm = confirmBtn.cloneNode(true);
+    const newCancel  = cancelBtn.cloneNode(true);
+    confirmBtn.replaceWith(newConfirm);
+    cancelBtn.replaceWith(newCancel);
+
+    newConfirm.addEventListener('click', () => {
+      closeModal();
+      if (typeof onConfirm === 'function') onConfirm();
+    });
+    newCancel.addEventListener('click', closeModal);
+    modal.querySelector('.modal__overlay').addEventListener('click', closeModal);
+    document.addEventListener('keydown', onModalKeydown);
+
+    setTimeout(() => newConfirm.focus(), 50);
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    document.removeEventListener('keydown', onModalKeydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  function onModalKeydown(event) {
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'Tab' && modal) {
+      const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last  = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+  }
+
+  window.RaizesFeedback = { showToast, openModal, closeModal };
+
+  document.querySelectorAll('[data-toast]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const variant = btn.dataset.toast;
+      const msgs = {
+        success: { title: 'Tudo certo!', text: 'Seu cadastro foi enviado com sucesso.' },
+        warning: { title: 'Atenção', text: 'Alguns campos precisam ser revisados.' },
+        danger:  { title: 'Erro',     text: 'Não foi possível concluir a operação.' },
+        info:    { title: 'Novidade', text: 'Novos projetos foram publicados.' },
+      };
+      showToast({ variant, ...(msgs[variant] || msgs.info) });
+    });
+  });
+
+  document.querySelectorAll('[data-modal]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const variant = btn.dataset.modal;
+      const map = {
+        success: { title: 'Cadastro confirmado', desc: 'Você receberá um e-mail com os próximos passos.', confirmText: 'Entendi' },
+        warning: { title: 'Deseja sair sem enviar?', desc: 'As informações preenchidas serão perdidas.', confirmText: 'Sair', cancelText: 'Continuar editando' },
+        danger:  { title: 'Excluir registro?', desc: 'Esta ação não pode ser desfeita.', confirmText: 'Excluir' },
+      };
+      const cfg = map[variant] || { title: 'Confirmação', desc: 'Deseja continuar?' };
+      openModal({
+        variant,
+        ...cfg,
+        onConfirm: () => showToast({ variant: 'success', title: 'Ação concluída', text: 'O modal foi confirmado.' }),
+      });
+    });
+  });
+
+  document.querySelectorAll('.alert__close').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const alert = btn.closest('.alert');
+      if (alert) alert.remove();
+    });
+  });
+  /* ==================== FIM DO BLOCO ADICIONADO ====================== */
+
   /* ------------------------------------------------------------------ */
   /* Formulário de cadastro                                              */
   /* ------------------------------------------------------------------ */
@@ -234,6 +370,8 @@
         statusEl.dataset.state = 'error';
         statusEl.textContent = 'Verifique os campos destacados antes de enviar.';
       }
+      /* ADICIONADO: toast de erro junto ao feedback inline */
+      showToast({ variant: 'danger', title: 'Não foi possível enviar', text: 'Verifique os campos destacados no formulário.' });
       const firstInvalid = form.querySelector(':invalid, .has-error input');
       if (firstInvalid) firstInvalid.focus();
       return;
@@ -254,6 +392,8 @@
       successPanel.focus();
       successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+    /* ADICIONADO: toast de sucesso */
+    showToast({ variant: 'success', title: 'Cadastro enviado', text: 'Em até 5 dias úteis entraremos em contato.' });
     form.reset();
     form.querySelectorAll('.has-error').forEach((el) => el.classList.remove('has-error'));
     setTimeout(() => {

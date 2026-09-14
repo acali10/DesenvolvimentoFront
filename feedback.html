@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes de feedback — Instituto Raízes</title>
+  <meta name="description" content="Demonstração dos componentes de feedback do Instituto Raízes: badges, alerts, toasts e modal.">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span class="brand__word">Instituto <span>Raízes</span></span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menu</span> ☰
+      </button>
+      <ul class="nav__links" id="menu-principal">
+        <li><a href="index.html">Início</a></li>
+        <li class="nav__dropdown">
+          <a href="projetos.html" aria-haspopup="true" aria-expanded="false">Projetos</a>
+          <ul class="nav__submenu">
+            <li><a href="projetos.html#horta">Horta Comunitária</a></li>
+            <li><a href="projetos.html#raiz-do-saber">Raiz do Saber</a></li>
+            <li><a href="projetos.html#cesta-solidaria">Cesta Solidária</a></li>
+            <li><a href="projetos.html#maos-que-criam">Mãos que Criam</a></li>
+          </ul>
+        </li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="feedback.html" aria-current="page">Componentes</a></li>
+        <li class="nav__cta"><a class="btn btn-primary" href="cadastro.html">Quero ajudar</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <span class="eyebrow">Design System</span>
+          <h1>Componentes de feedback</h1>
+          <p class="lede">Padrões visuais reutilizáveis para comunicar estados, alertas e confirmações em toda a plataforma.</p>
+        </div>
+
+        <div class="feedback-section">
+          <h2>Badges</h2>
+          <p>Etiquetas de categorização semântica — usadas para status, tags e contadores.</p>
+          <div class="feedback-demo">
+            <span class="badge badge--success">Ativo</span>
+            <span class="badge badge--warning">Pendente</span>
+            <span class="badge badge--danger">Cancelado</span>
+            <span class="badge badge--info">Novo</span>
+            <span class="badge badge--neutral">Rascunho</span>
+            <span class="badge badge--success badge--no-dot">120 voluntários</span>
+          </div>
+        </div>
+
+        <div class="feedback-section">
+          <h2>Alerts</h2>
+          <p>Caixas de alerta persistentes, com ícone, título e ação de fechar.</p>
+          <div class="feedback-demo feedback-demo--stack">
+            <div class="alert alert--success" role="status">
+              <span class="alert__icon" aria-hidden="true">✓</span>
+              <div class="alert__body">
+                <strong class="alert__title">Cadastro confirmado</strong>
+                <p class="alert__text">Sua inscrição foi registrada. Em breve entraremos em contato.</p>
+              </div>
+              <button class="alert__close" type="button" aria-label="Fechar alerta">×</button>
+            </div>
+            <div class="alert alert--warning" role="status">
+              <span class="alert__icon" aria-hidden="true">!</span>
+              <div class="alert__body">
+                <strong class="alert__title">Verifique seus dados</strong>
+                <p class="alert__text">O CPF informado parece inválido. Confira os números digitados.</p>
+              </div>
+              <button class="alert__close" type="button" aria-label="Fechar alerta">×</button>
+            </div>
+            <div class="alert alert--danger" role="alert">
+              <span class="alert__icon" aria-hidden="true">✕</span>
+              <div class="alert__body">
+                <strong class="alert__title">Falha no envio</strong>
+                <p class="alert__text">Não foi possível enviar o formulário. Tente novamente em instantes.</p>
+              </div>
+              <button class="alert__close" type="button" aria-label="Fechar alerta">×</button>
+            </div>
+            <div class="alert alert--info" role="status">
+              <span class="alert__icon" aria-hidden="true">i</span>
+              <div class="alert__body">
+                <strong class="alert__title">Novidade</strong>
+                <p class="alert__text">Abrimos vagas para o projeto Raiz do Saber.</p>
+              </div>
+              <button class="alert__close" type="button" aria-label="Fechar alerta">×</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-section">
+          <h2>Toasts</h2>
+          <p>Notificações não obstrutivas que aparecem no canto inferior direito e somem automaticamente.</p>
+          <div class="feedback-demo">
+            <button class="btn btn-primary" data-toast="success">Toast de sucesso</button>
+            <button class="btn btn-ghost"   data-toast="warning">Toast de atenção</button>
+            <button class="btn btn-ghost"   data-toast="danger">Toast de erro</button>
+            <button class="btn btn-ghost"   data-toast="info">Toast de informação</button>
+          </div>
+        </div>
+
+        <div class="feedback-section">
+          <h2>Modal</h2>
+          <p>Diálogo semântico com foco preso no conteúdo, fechamento por ESC ou clique no overlay.</p>
+          <div class="feedback-demo">
+            <button class="btn btn-primary" data-modal="success">Abrir modal de sucesso</button>
+            <button class="btn btn-ghost"   data-modal="warning">Abrir modal de confirmação</button>
+            <button class="btn btn-ghost"   data-modal="danger">Abrir modal destrutivo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal-feedback" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__overlay" data-modal-close></div>
+    <div class="modal__dialog">
+      <div class="modal__header">
+        <span class="modal__icon" aria-hidden="true">i</span>
+        <div>
+          <h2 class="modal__title" id="modal-title">Título</h2>
+          <p class="modal__desc">Descrição</p>
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn-ghost" data-modal-cancel>Cancelar</button>
+        <button class="btn btn-primary" data-modal-confirm>Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html" style="margin-bottom: 0.8em;">
+            <img src="assets/img/logo.svg" alt="" width="36" height="36">
+            <span class="brand__word">Instituto Raízes</span>
+          </a>
+          <p>Rua das Acácias, 245 — Bairro Esperança<br>Caxias do Sul, RS</p>
+        </div>
+        <div>
+          <h3>Navegação</h3>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="feedback.html">Componentes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contato</h3>
+          <ul>
+            <li>contato@institutoraizes.org.br</li>
+            <li>(54) 3222-1010</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Instituto Raízes. Todos os direitos reservados.</span>
+        <span>CNPJ 00.000.000/0001-00</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
