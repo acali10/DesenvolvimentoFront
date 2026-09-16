@@ -86,14 +86,3 @@ Por fim, a persistência em `localStorage` me mostrou como armazenar dados sem b
 Desenvolvido por **Caline Nepomoceno**:
 
 - GitHub: [@acali10](https://github.com/acali10)
-
-Como usar
-Abra o README.md no VS Code
-
-Selecione tudo (Ctrl + A) e apague
-
-Cole o conteúdo acima
-
-Salve (Ctrl + S)
-
-Comite e faça push
