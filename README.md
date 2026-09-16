@@ -2,7 +2,7 @@
 
 Projeto de site institucional desenvolvido para o **Instituto Raízes**, uma organização fictícia de apoio a famílias em situação de vulnerabilidade em Caxias do Sul (RS). O objetivo foi construir uma plataforma completa com múltiplas páginas, formulário de cadastro de voluntários e uma biblioteca de componentes de feedback reutilizáveis.
 
-**[ Clique aqui para ver o projeto online](https://acali10.github.io/DesenvolvimentoFront/)**
+**[Clique aqui para ver o projeto online](https://acali10.github.io/DesenvolvimentoFront/)**
 
 ---
 
@@ -53,30 +53,47 @@ Por fim, a persistência em `localStorage` me mostrou como armazenar dados sem b
 ## Como rodar o projeto localmente
 
 1. Clone o repositório:
+
    ```bash
-   git clone https://acali10.github.io/DesenvolvimentoFront.git
-Acesse a pasta do projeto:
+   git clone https://github.com/acali10/DesenvolvimentoFront.git
+   ```
 
-bash
-cd DesenvolvimentoFront
-Abra o arquivo index.html no navegador — ou, se preferir, use a extensão Live Server do VS Code para rodar com recarregamento automático.
+2. Acesse a pasta do projeto:
 
-Observação: como o projeto usa ES6 Modules (type="module"), é necessário abrir por um servidor local (como o Live Server) e não por duplo-clique no arquivo. Caso contrário, o navegador bloqueará os import por política de CORS.
+   ```bash
+   cd DesenvolvimentoFront
+   ```
 
-Melhorias futuras
-Adicionar um alt descritivo nas ilustrações SVG do hero e dos projetos.
+3. Abra o arquivo `index.html` no navegador — ou, se preferir, use a extensão **Live Server** do VS Code para rodar com recarregamento automático.
 
-Converter as imagens para .webp visando otimização de carregamento.
+> **Observação:** como o projeto usa ES6 Modules (`type="module"`), é necessário abrir por um servidor local (como o Live Server) e não por duplo-clique no arquivo. Caso contrário, o navegador bloqueará os `import` por política de CORS.
 
-Implementar testes automatizados para as funções de validação (isValidCPF, máscaras).
+---
 
-Estudar bundlers como Vite ou Webpack para otimizar o carregamento de módulos em produção.
+## Melhorias futuras
 
-Migrar a persistência de localStorage para IndexedDB, caso o volume de dados cresça.
+- Adicionar um `alt` descritivo nas ilustrações SVG do hero e dos projetos.
+- Converter as imagens para `.webp` visando otimização de carregamento.
+- Implementar testes automatizados para as funções de validação (`isValidCPF`, máscaras).
+- Estudar bundlers como **Vite** ou **Webpack** para otimizar o carregamento de módulos em produção.
+- Migrar a persistência de `localStorage` para **IndexedDB**, caso o volume de dados cresça.
+- Adicionar suporte a dark mode aproveitando as variáveis CSS já existentes.
 
-Adicionar suporte a dark mode aproveitando as variáveis CSS já existentes.
+---
 
-Autora
-Desenvolvido por Caline Nepomoceno:
+## Autora
 
-GitHub: @acali10
+Desenvolvido por **Caline Nepomoceno**:
+
+- GitHub: [@acali10](https://github.com/acali10)
+
+Como usar
+Abra o README.md no VS Code
+
+Selecione tudo (Ctrl + A) e apague
+
+Cole o conteúdo acima
+
+Salve (Ctrl + S)
+
+Comite e faça push
