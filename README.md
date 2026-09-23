@@ -86,3 +86,5 @@ Por fim, a persistência em `localStorage` me mostrou como armazenar dados sem b
 Desenvolvido por **Caline Nepomoceno**:
 
 - GitHub: [@acali10](https://github.com/acali10)
+
+<!-- Versão inicial do README -->
