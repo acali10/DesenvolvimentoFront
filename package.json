@@ -1,0 +1,28 @@
+{
+  "name": "desenvolvimentofront",
+  "version": "1.0.0",
+  "description": "Projeto de site institucional desenvolvido para o **Instituto Raízes**, uma organização fictícia de apoio a famílias em situação de vulnerabilidade em Caxias do Sul (RS). O objetivo foi construir uma plataforma completa com múltiplas páginas, formulário de cadastro de voluntários e uma biblioteca de componentes de feedback reutilizáveis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acali10/DesenvolvimentoFront.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/acali10/DesenvolvimentoFront/issues"
+  },
+  "homepage": "https://github.com/acali10/DesenvolvimentoFront#readme",
+  "devDependencies": {
+    "vite": "^8.3.0",
+    "vite-bundle-analyzer": "^1.3.9"
+  }
+}
